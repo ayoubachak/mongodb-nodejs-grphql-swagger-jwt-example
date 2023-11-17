@@ -1,0 +1,91 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple API for managing users.",
+    "version": "1.0.0",
+    "title": "User Management API",
+    "contact": {
+      "email": "contact@example.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "users",
+      "description": "Everything about your Users"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Add a new user",
+        "description": "",
+        "operationId": "addUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "name",
+        "email",
+        "password"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.8.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.1",
+    "swagger-ui-express": "^5.0.0"
+  }
+}
